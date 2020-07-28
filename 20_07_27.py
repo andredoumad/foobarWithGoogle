@@ -51,26 +51,40 @@ return a string solution
 
 '''
 
-
 def solution(xs):
-    # cache = []
-    def solve(xs, product):
-        print('--------------')
-        print(xs)
-        print(product)
-        if xs:
-            if xs[len(xs)-1] == 0:
-                xs.pop(len(xs)-1)
-                return solve(xs, product)
+    if len(xs) ==1:
+        return str(xs[0])
+    posPairs = []
+    largestNegative = None
+    largestNegativeIndex = 0
+    negPairs = []
+    for panel in xs:
+        if panel != 0:
+            if panel > 0:
+                posPairs.append(panel)
             else:
-                print(str(product) + ' * ' + str(xs[len(xs)-1]))
-                result = product * xs[len(xs)-1]
-                xs.pop(len(xs)-1)
-                if result < 0:
-                    result = result * -1
-                return solve(xs,result)
-        return product 
-    return str(solve(xs, 1))
+                if largestNegative == None or largestNegative < panel:
+                    largestNegative = panel
+                    negPairs.append(panel)
+                    largestNegativeIndex = len(negPairs)-1
+                else:
+                    negPairs.append(panel)
+
+    if len(negPairs) == 1:
+        negPairs.pop()
+    if len(posPairs) == 0 and len(negPairs) == 0:
+        return str(0)
+    if len(negPairs) % 2 != 0:
+        negPairs.pop(largestNegativeIndex)
+    allPairs = posPairs + negPairs
+    uberPower = 1
+    def ubermensch(powerArray, product):
+        if powerArray:
+            val = powerArray.pop()
+            product *= val
+            return ubermensch(powerArray, product)
+        return product
+    return str(ubermensch(allPairs, 1))
 
 result = solution([2,-3,1,0,-5])
 assert result == '30'
@@ -81,3 +95,47 @@ assert result == '8'
 result = solution([-2, -3, 4, -5])
 assert result == '60'
 
+
+result = solution([-5])
+assert result == '-5'
+
+
+result = solution([5])
+assert result == '5'
+
+
+result = solution([0])
+assert result == '0'
+
+
+result = solution([-1,1])
+assert result == '1'
+
+result = solution([0,0])
+assert result == '0'
+
+
+result = solution([0,1,0,0])
+assert result == '1'
+
+
+result = solution([2,1000,0,1,-3,-2,0,0])
+assert result == '12000'
+
+
+
+result = solution([-3,-2,-1,-5,-7])
+assert result == '210'
+
+
+
+result = solution([-23,-53,-21,-5,-7, 5])
+assert result == '895965'
+
+
+result = solution([-23,-53,-21,-5,-7])
+assert result == '179193'
+
+
+result = solution([-23])
+assert result == '-23'
