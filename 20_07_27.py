@@ -77,7 +77,6 @@ def solution(xs):
     if len(negPairs) % 2 != 0:
         negPairs.pop(largestNegativeIndex)
     allPairs = posPairs + negPairs
-    uberPower = 1
     def ubermensch(powerArray, product):
         if powerArray:
             val = powerArray.pop()
