@@ -29,15 +29,55 @@ solution.solution([-2, -3, 4, -5])
 Output:
     60
 
--- Java cases --
-Input:
-Solution.solution({2, 0, 2, 2, 0})
-Output:
-    8
-
-Input:
-Solution.solution({-2, -3, 4, -5})
-Output:
-    60
 '''
+
+
+
+
+'''
+figure out what the maximum output of each array
+
+max power of array
+
+solution(xs) takes a list of integers each represening the power output of an individual panel
+    return the maximum product of a non empty subset
+
+
+    So for example, if an array contained panels with power output levels of [2, -3, 1, 0, -5], then the maximum product would be found by taking the subset: xs[0] = 2, xs[1] = -3, xs[4] = -5, giving the product 2*(-3)*(-5) = 30.  So solution([2,-3,1,0,-5]) will be "30".
+
+    multiplying two negatives gives a positive and that's ok - due to the sci-fi 'wave stabilizer'
+
+return a string solution
+
+'''
+
+
+def solution(xs):
+    # cache = []
+    def solve(xs, product):
+        print('--------------')
+        print(xs)
+        print(product)
+        if xs:
+            if xs[len(xs)-1] == 0:
+                xs.pop(len(xs)-1)
+                return solve(xs, product)
+            else:
+                print(str(product) + ' * ' + str(xs[len(xs)-1]))
+                result = product * xs[len(xs)-1]
+                xs.pop(len(xs)-1)
+                if result < 0:
+                    result = result * -1
+                return solve(xs,result)
+        return product 
+    return str(solve(xs, 1))
+
+result = solution([2,-3,1,0,-5])
+assert result == '30'
+
+result = solution([2, 0, 2, 2, 0])
+assert result == '8'
+
+result = solution([-2, -3, 4, -5])
+assert result == '60'
 
