@@ -174,7 +174,7 @@ class Solution(object):
             code = self.lisToInt(a)
             print('testing: ' + str(code))
             if code % 3 == 0:
-                # print('FOUND CODE !')
+                print('FOUND CODE !', code, ' yay.')
                 self.codes.append(code)
                 # return code
                 # exit()
@@ -486,125 +486,245 @@ testing: 15143
 testing: 15413
 testing: 15431
 testing: 94311
+FOUND CODE ! 94311  yay.
 testing: 94311
+FOUND CODE ! 94311  yay.
 testing: 94131
+FOUND CODE ! 94131  yay.
 testing: 94113
+FOUND CODE ! 94113  yay.
 testing: 94113
+FOUND CODE ! 94113  yay.
 testing: 94131
+FOUND CODE ! 94131  yay.
 testing: 93411
+FOUND CODE ! 93411  yay.
 testing: 93411
+FOUND CODE ! 93411  yay.
 testing: 93141
+FOUND CODE ! 93141  yay.
 testing: 93114
+FOUND CODE ! 93114  yay.
 testing: 93114
+FOUND CODE ! 93114  yay.
 testing: 93141
+FOUND CODE ! 93141  yay.
 testing: 91341
+FOUND CODE ! 91341  yay.
 testing: 91314
+FOUND CODE ! 91314  yay.
 testing: 91431
+FOUND CODE ! 91431  yay.
 testing: 91413
+FOUND CODE ! 91413  yay.
 testing: 91143
+FOUND CODE ! 91143  yay.
 testing: 91134
+FOUND CODE ! 91134  yay.
 testing: 91314
+FOUND CODE ! 91314  yay.
 testing: 91341
+FOUND CODE ! 91341  yay.
 testing: 91134
+FOUND CODE ! 91134  yay.
 testing: 91143
+FOUND CODE ! 91143  yay.
 testing: 91413
+FOUND CODE ! 91413  yay.
 testing: 91431
+FOUND CODE ! 91431  yay.
 testing: 49311
+FOUND CODE ! 49311  yay.
 testing: 49311
+FOUND CODE ! 49311  yay.
 testing: 49131
+FOUND CODE ! 49131  yay.
 testing: 49113
+FOUND CODE ! 49113  yay.
 testing: 49113
+FOUND CODE ! 49113  yay.
 testing: 49131
+FOUND CODE ! 49131  yay.
 testing: 43911
+FOUND CODE ! 43911  yay.
 testing: 43911
+FOUND CODE ! 43911  yay.
 testing: 43191
+FOUND CODE ! 43191  yay.
 testing: 43119
+FOUND CODE ! 43119  yay.
 testing: 43119
+FOUND CODE ! 43119  yay.
 testing: 43191
+FOUND CODE ! 43191  yay.
 testing: 41391
+FOUND CODE ! 41391  yay.
 testing: 41319
+FOUND CODE ! 41319  yay.
 testing: 41931
+FOUND CODE ! 41931  yay.
 testing: 41913
+FOUND CODE ! 41913  yay.
 testing: 41193
+FOUND CODE ! 41193  yay.
 testing: 41139
+FOUND CODE ! 41139  yay.
 testing: 41319
+FOUND CODE ! 41319  yay.
 testing: 41391
+FOUND CODE ! 41391  yay.
 testing: 41139
+FOUND CODE ! 41139  yay.
 testing: 41193
+FOUND CODE ! 41193  yay.
 testing: 41913
+FOUND CODE ! 41913  yay.
 testing: 41931
+FOUND CODE ! 41931  yay.
 testing: 34911
+FOUND CODE ! 34911  yay.
 testing: 34911
+FOUND CODE ! 34911  yay.
 testing: 34191
+FOUND CODE ! 34191  yay.
 testing: 34119
+FOUND CODE ! 34119  yay.
 testing: 34119
+FOUND CODE ! 34119  yay.
 testing: 34191
+FOUND CODE ! 34191  yay.
 testing: 39411
+FOUND CODE ! 39411  yay.
 testing: 39411
+FOUND CODE ! 39411  yay.
 testing: 39141
+FOUND CODE ! 39141  yay.
 testing: 39114
+FOUND CODE ! 39114  yay.
 testing: 39114
+FOUND CODE ! 39114  yay.
 testing: 39141
+FOUND CODE ! 39141  yay.
 testing: 31941
+FOUND CODE ! 31941  yay.
 testing: 31914
+FOUND CODE ! 31914  yay.
 testing: 31491
+FOUND CODE ! 31491  yay.
 testing: 31419
+FOUND CODE ! 31419  yay.
 testing: 31149
+FOUND CODE ! 31149  yay.
 testing: 31194
+FOUND CODE ! 31194  yay.
 testing: 31914
+FOUND CODE ! 31914  yay.
 testing: 31941
+FOUND CODE ! 31941  yay.
 testing: 31194
+FOUND CODE ! 31194  yay.
 testing: 31149
+FOUND CODE ! 31149  yay.
 testing: 31419
+FOUND CODE ! 31419  yay.
 testing: 31491
+FOUND CODE ! 31491  yay.
 testing: 14391
+FOUND CODE ! 14391  yay.
 testing: 14319
+FOUND CODE ! 14319  yay.
 testing: 14931
+FOUND CODE ! 14931  yay.
 testing: 14913
+FOUND CODE ! 14913  yay.
 testing: 14193
+FOUND CODE ! 14193  yay.
 testing: 14139
+FOUND CODE ! 14139  yay.
 testing: 13491
+FOUND CODE ! 13491  yay.
 testing: 13419
+FOUND CODE ! 13419  yay.
 testing: 13941
+FOUND CODE ! 13941  yay.
 testing: 13914
+FOUND CODE ! 13914  yay.
 testing: 13194
+FOUND CODE ! 13194  yay.
 testing: 13149
+FOUND CODE ! 13149  yay.
 testing: 19341
+FOUND CODE ! 19341  yay.
 testing: 19314
+FOUND CODE ! 19314  yay.
 testing: 19431
+FOUND CODE ! 19431  yay.
 testing: 19413
+FOUND CODE ! 19413  yay.
 testing: 19143
+FOUND CODE ! 19143  yay.
 testing: 19134
+FOUND CODE ! 19134  yay.
 testing: 11394
+FOUND CODE ! 11394  yay.
 testing: 11349
+FOUND CODE ! 11349  yay.
 testing: 11934
+FOUND CODE ! 11934  yay.
 testing: 11943
+FOUND CODE ! 11943  yay.
 testing: 11493
+FOUND CODE ! 11493  yay.
 testing: 11439
+FOUND CODE ! 11439  yay.
 testing: 14319
+FOUND CODE ! 14319  yay.
 testing: 14391
+FOUND CODE ! 14391  yay.
 testing: 14139
+FOUND CODE ! 14139  yay.
 testing: 14193
+FOUND CODE ! 14193  yay.
 testing: 14913
+FOUND CODE ! 14913  yay.
 testing: 14931
+FOUND CODE ! 14931  yay.
 testing: 13419
+FOUND CODE ! 13419  yay.
 testing: 13491
+FOUND CODE ! 13491  yay.
 testing: 13149
+FOUND CODE ! 13149  yay.
 testing: 13194
+FOUND CODE ! 13194  yay.
 testing: 13914
+FOUND CODE ! 13914  yay.
 testing: 13941
+FOUND CODE ! 13941  yay.
 testing: 11349
+FOUND CODE ! 11349  yay.
 testing: 11394
+FOUND CODE ! 11394  yay.
 testing: 11439
+FOUND CODE ! 11439  yay.
 testing: 11493
+FOUND CODE ! 11493  yay.
 testing: 11943
+FOUND CODE ! 11943  yay.
 testing: 11934
+FOUND CODE ! 11934  yay.
 testing: 19314
+FOUND CODE ! 19314  yay.
 testing: 19341
+FOUND CODE ! 19341  yay.
 testing: 19134
+FOUND CODE ! 19134  yay.
 testing: 19143
+FOUND CODE ! 19143  yay.
 testing: 19413
+FOUND CODE ! 19413  yay.
 testing: 19431
+FOUND CODE ! 19431  yay.
 testing: 95311
 testing: 95311
 testing: 95131
@@ -966,29 +1086,53 @@ testing: 19354
 testing: 19534
 testing: 19543
 testing: 4311
+FOUND CODE ! 4311  yay.
 testing: 4311
+FOUND CODE ! 4311  yay.
 testing: 4131
+FOUND CODE ! 4131  yay.
 testing: 4113
+FOUND CODE ! 4113  yay.
 testing: 4113
+FOUND CODE ! 4113  yay.
 testing: 4131
+FOUND CODE ! 4131  yay.
 testing: 3411
+FOUND CODE ! 3411  yay.
 testing: 3411
+FOUND CODE ! 3411  yay.
 testing: 3141
+FOUND CODE ! 3141  yay.
 testing: 3114
+FOUND CODE ! 3114  yay.
 testing: 3114
+FOUND CODE ! 3114  yay.
 testing: 3141
+FOUND CODE ! 3141  yay.
 testing: 1341
+FOUND CODE ! 1341  yay.
 testing: 1314
+FOUND CODE ! 1314  yay.
 testing: 1431
+FOUND CODE ! 1431  yay.
 testing: 1413
+FOUND CODE ! 1413  yay.
 testing: 1143
+FOUND CODE ! 1143  yay.
 testing: 1134
+FOUND CODE ! 1134  yay.
 testing: 1314
+FOUND CODE ! 1314  yay.
 testing: 1341
+FOUND CODE ! 1341  yay.
 testing: 1134
+FOUND CODE ! 1134  yay.
 testing: 1143
+FOUND CODE ! 1143  yay.
 testing: 1413
+FOUND CODE ! 1413  yay.
 testing: 1431
+FOUND CODE ! 1431  yay.
 testing: 5311
 testing: 5311
 testing: 5131
@@ -1086,29 +1230,53 @@ testing: 1193
 testing: 1913
 testing: 1931
 testing: 9411
+FOUND CODE ! 9411  yay.
 testing: 9411
+FOUND CODE ! 9411  yay.
 testing: 9141
+FOUND CODE ! 9141  yay.
 testing: 9114
+FOUND CODE ! 9114  yay.
 testing: 9114
+FOUND CODE ! 9114  yay.
 testing: 9141
+FOUND CODE ! 9141  yay.
 testing: 4911
+FOUND CODE ! 4911  yay.
 testing: 4911
+FOUND CODE ! 4911  yay.
 testing: 4191
+FOUND CODE ! 4191  yay.
 testing: 4119
+FOUND CODE ! 4119  yay.
 testing: 4119
+FOUND CODE ! 4119  yay.
 testing: 4191
+FOUND CODE ! 4191  yay.
 testing: 1491
+FOUND CODE ! 1491  yay.
 testing: 1419
+FOUND CODE ! 1419  yay.
 testing: 1941
+FOUND CODE ! 1941  yay.
 testing: 1914
+FOUND CODE ! 1914  yay.
 testing: 1194
+FOUND CODE ! 1194  yay.
 testing: 1149
+FOUND CODE ! 1149  yay.
 testing: 1419
+FOUND CODE ! 1419  yay.
 testing: 1491
+FOUND CODE ! 1491  yay.
 testing: 1149
+FOUND CODE ! 1149  yay.
 testing: 1194
+FOUND CODE ! 1194  yay.
 testing: 1914
+FOUND CODE ! 1914  yay.
 testing: 1941
+FOUND CODE ! 1941  yay.
 testing: 9431
 testing: 9413
 testing: 9341
@@ -1158,29 +1326,53 @@ testing: 1195
 testing: 1915
 testing: 1951
 testing: 9531
+FOUND CODE ! 9531  yay.
 testing: 9513
+FOUND CODE ! 9513  yay.
 testing: 9351
+FOUND CODE ! 9351  yay.
 testing: 9315
+FOUND CODE ! 9315  yay.
 testing: 9135
+FOUND CODE ! 9135  yay.
 testing: 9153
+FOUND CODE ! 9153  yay.
 testing: 5931
+FOUND CODE ! 5931  yay.
 testing: 5913
+FOUND CODE ! 5913  yay.
 testing: 5391
+FOUND CODE ! 5391  yay.
 testing: 5319
+FOUND CODE ! 5319  yay.
 testing: 5139
+FOUND CODE ! 5139  yay.
 testing: 5193
+FOUND CODE ! 5193  yay.
 testing: 3591
+FOUND CODE ! 3591  yay.
 testing: 3519
+FOUND CODE ! 3519  yay.
 testing: 3951
+FOUND CODE ! 3951  yay.
 testing: 3915
+FOUND CODE ! 3915  yay.
 testing: 3195
+FOUND CODE ! 3195  yay.
 testing: 3159
+FOUND CODE ! 3159  yay.
 testing: 1539
+FOUND CODE ! 1539  yay.
 testing: 1593
+FOUND CODE ! 1593  yay.
 testing: 1359
+FOUND CODE ! 1359  yay.
 testing: 1395
+FOUND CODE ! 1395  yay.
 testing: 1935
+FOUND CODE ! 1935  yay.
 testing: 1953
+FOUND CODE ! 1953  yay.
 testing: 9541
 testing: 9514
 testing: 9451
@@ -1212,11 +1404,17 @@ testing: 113
 testing: 113
 testing: 131
 testing: 411
+FOUND CODE ! 411  yay.
 testing: 411
+FOUND CODE ! 411  yay.
 testing: 141
+FOUND CODE ! 141  yay.
 testing: 114
+FOUND CODE ! 114  yay.
 testing: 114
+FOUND CODE ! 114  yay.
 testing: 141
+FOUND CODE ! 141  yay.
 testing: 431
 testing: 413
 testing: 341
@@ -1230,11 +1428,17 @@ testing: 115
 testing: 115
 testing: 151
 testing: 531
+FOUND CODE ! 531  yay.
 testing: 513
+FOUND CODE ! 513  yay.
 testing: 351
+FOUND CODE ! 351  yay.
 testing: 315
+FOUND CODE ! 315  yay.
 testing: 135
+FOUND CODE ! 135  yay.
 testing: 153
+FOUND CODE ! 153  yay.
 testing: 541
 testing: 514
 testing: 451
@@ -1260,11 +1464,17 @@ testing: 419
 testing: 149
 testing: 194
 testing: 951
+FOUND CODE ! 951  yay.
 testing: 915
+FOUND CODE ! 915  yay.
 testing: 591
+FOUND CODE ! 591  yay.
 testing: 519
+FOUND CODE ! 519  yay.
 testing: 159
+FOUND CODE ! 159  yay.
 testing: 195
+FOUND CODE ! 195  yay.
 testing: 11
 testing: 11
 testing: 31
@@ -1272,7 +1482,9 @@ testing: 13
 testing: 41
 testing: 14
 testing: 51
+FOUND CODE ! 51  yay.
 testing: 15
+FOUND CODE ! 15  yay.
 testing: 91
 testing: 19
 X  1
@@ -1496,7 +1708,7 @@ RESULT:  94311
 ================
 .
 ----------------------------------------------------------------------
-Ran 1 test in 0.005s
+Ran 1 test in 0.006s
 
 OK
 '''
