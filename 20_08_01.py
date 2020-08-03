@@ -1,5 +1,5 @@
 # Andre Doumad
-# TODO: make it more readable, add memoization, make it more recursive, comment out print statements.
+# TODO: remove repetitive calls, make it more readable, add memoization, make it more recursive, comment out print statements.
 
 '''
 Please Pass the Coded Messages
