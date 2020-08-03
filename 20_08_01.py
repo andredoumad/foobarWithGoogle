@@ -172,7 +172,7 @@ class Solution(object):
         if b == len(a):
             # print('a ', a)
             code = self.lisToInt(a)
-            # print('testing: ' + str(code))
+            print('testing: ' + str(code))
             if code % 3 == 0:
                 # print('FOUND CODE !')
                 self.codes.append(code)
@@ -203,11 +203,14 @@ class Solution(object):
 
 
     def recEncoder(self, X, index):
+
+        # we need to create a dictionary of permutations where X is 
+        # fully shuffled and including all of the ways to shuffle X-1
         lastSetLength = self.seedSets(X)
         while lastSetLength != None:
             weNeedThoseSeedsMorty = []
             for k,v in self.setDict.items():
-                print('k ', k, ' v ', v)
+                # print('k ', k, ' v ', v)
                 if len(v) == lastSetLength:
                     weNeedThoseSeedsMorty.append(v)
             for i in range(0,len(weNeedThoseSeedsMorty)):
@@ -218,8 +221,14 @@ class Solution(object):
             print('sets: ', self.sets[i])
 
         for k,v in self.setDict.items():
-            print('k ', k, ' v ', v)
+            # print('k ', k, ' v ', v)
             self.recPerm(v, 0)
+
+        # check each element of X to see if there are any primes there.
+        for i in range(0, len(X)):
+            if X[i] % 3 == 0:
+                # print('FOUND CODE !')
+                self.codes.append(X[i])
 
         for i in range(0, len(self.codes)):
             print('codes: ', self.codes[i])
@@ -240,33 +249,14 @@ if __name__=='__main__':
     unittest.main()
 
 '''
+-------------
 plates:  [3, 1, 4, 1, 5, 9]
 sorted plates:  [9, 5, 4, 3, 1, 1]
-k  54311  v  [5, 4, 3, 1, 1]
-k  94311  v  [9, 4, 3, 1, 1]
-k  95311  v  [9, 5, 3, 1, 1]
-k  95411  v  [9, 5, 4, 1, 1]
-k  95431  v  [9, 5, 4, 3, 1]
 weNeedThoseSeedsMorty  [5, 4, 3, 1, 1]
 weNeedThoseSeedsMorty  [9, 4, 3, 1, 1]
 weNeedThoseSeedsMorty  [9, 5, 3, 1, 1]
 weNeedThoseSeedsMorty  [9, 5, 4, 1, 1]
 weNeedThoseSeedsMorty  [9, 5, 4, 3, 1]
-k  54311  v  [5, 4, 3, 1, 1]
-k  94311  v  [9, 4, 3, 1, 1]
-k  95311  v  [9, 5, 3, 1, 1]
-k  95411  v  [9, 5, 4, 1, 1]
-k  95431  v  [9, 5, 4, 3, 1]
-k  4311  v  [4, 3, 1, 1]
-k  5311  v  [5, 3, 1, 1]
-k  5411  v  [5, 4, 1, 1]
-k  5431  v  [5, 4, 3, 1]
-k  9311  v  [9, 3, 1, 1]
-k  9411  v  [9, 4, 1, 1]
-k  9431  v  [9, 4, 3, 1]
-k  9511  v  [9, 5, 1, 1]
-k  9531  v  [9, 5, 3, 1]
-k  9541  v  [9, 5, 4, 1]
 weNeedThoseSeedsMorty  [4, 3, 1, 1]
 weNeedThoseSeedsMorty  [5, 3, 1, 1]
 weNeedThoseSeedsMorty  [5, 4, 1, 1]
@@ -277,31 +267,6 @@ weNeedThoseSeedsMorty  [9, 4, 3, 1]
 weNeedThoseSeedsMorty  [9, 5, 1, 1]
 weNeedThoseSeedsMorty  [9, 5, 3, 1]
 weNeedThoseSeedsMorty  [9, 5, 4, 1]
-k  54311  v  [5, 4, 3, 1, 1]
-k  94311  v  [9, 4, 3, 1, 1]
-k  95311  v  [9, 5, 3, 1, 1]
-k  95411  v  [9, 5, 4, 1, 1]
-k  95431  v  [9, 5, 4, 3, 1]
-k  4311  v  [4, 3, 1, 1]
-k  5311  v  [5, 3, 1, 1]
-k  5411  v  [5, 4, 1, 1]
-k  5431  v  [5, 4, 3, 1]
-k  9311  v  [9, 3, 1, 1]
-k  9411  v  [9, 4, 1, 1]
-k  9431  v  [9, 4, 3, 1]
-k  9511  v  [9, 5, 1, 1]
-k  9531  v  [9, 5, 3, 1]
-k  9541  v  [9, 5, 4, 1]
-k  311  v  [3, 1, 1]
-k  411  v  [4, 1, 1]
-k  431  v  [4, 3, 1]
-k  511  v  [5, 1, 1]
-k  531  v  [5, 3, 1]
-k  541  v  [5, 4, 1]
-k  911  v  [9, 1, 1]
-k  931  v  [9, 3, 1]
-k  941  v  [9, 4, 1]
-k  951  v  [9, 5, 1]
 weNeedThoseSeedsMorty  [3, 1, 1]
 weNeedThoseSeedsMorty  [4, 1, 1]
 weNeedThoseSeedsMorty  [4, 3, 1]
@@ -312,36 +277,6 @@ weNeedThoseSeedsMorty  [9, 1, 1]
 weNeedThoseSeedsMorty  [9, 3, 1]
 weNeedThoseSeedsMorty  [9, 4, 1]
 weNeedThoseSeedsMorty  [9, 5, 1]
-k  54311  v  [5, 4, 3, 1, 1]
-k  94311  v  [9, 4, 3, 1, 1]
-k  95311  v  [9, 5, 3, 1, 1]
-k  95411  v  [9, 5, 4, 1, 1]
-k  95431  v  [9, 5, 4, 3, 1]
-k  4311  v  [4, 3, 1, 1]
-k  5311  v  [5, 3, 1, 1]
-k  5411  v  [5, 4, 1, 1]
-k  5431  v  [5, 4, 3, 1]
-k  9311  v  [9, 3, 1, 1]
-k  9411  v  [9, 4, 1, 1]
-k  9431  v  [9, 4, 3, 1]
-k  9511  v  [9, 5, 1, 1]
-k  9531  v  [9, 5, 3, 1]
-k  9541  v  [9, 5, 4, 1]
-k  311  v  [3, 1, 1]
-k  411  v  [4, 1, 1]
-k  431  v  [4, 3, 1]
-k  511  v  [5, 1, 1]
-k  531  v  [5, 3, 1]
-k  541  v  [5, 4, 1]
-k  911  v  [9, 1, 1]
-k  931  v  [9, 3, 1]
-k  941  v  [9, 4, 1]
-k  951  v  [9, 5, 1]
-k  11  v  [1, 1]
-k  31  v  [3, 1]
-k  41  v  [4, 1]
-k  51  v  [5, 1]
-k  91  v  [9, 1]
 weNeedThoseSeedsMorty  [1, 1]
 X  1
 weNeedThoseSeedsMorty  [3, 1]
@@ -352,37 +287,6 @@ weNeedThoseSeedsMorty  [5, 1]
 X  1
 weNeedThoseSeedsMorty  [9, 1]
 X  1
-k  54311  v  [5, 4, 3, 1, 1]
-k  94311  v  [9, 4, 3, 1, 1]
-k  95311  v  [9, 5, 3, 1, 1]
-k  95411  v  [9, 5, 4, 1, 1]
-k  95431  v  [9, 5, 4, 3, 1]
-k  4311  v  [4, 3, 1, 1]
-k  5311  v  [5, 3, 1, 1]
-k  5411  v  [5, 4, 1, 1]
-k  5431  v  [5, 4, 3, 1]
-k  9311  v  [9, 3, 1, 1]
-k  9411  v  [9, 4, 1, 1]
-k  9431  v  [9, 4, 3, 1]
-k  9511  v  [9, 5, 1, 1]
-k  9531  v  [9, 5, 3, 1]
-k  9541  v  [9, 5, 4, 1]
-k  311  v  [3, 1, 1]
-k  411  v  [4, 1, 1]
-k  431  v  [4, 3, 1]
-k  511  v  [5, 1, 1]
-k  531  v  [5, 3, 1]
-k  541  v  [5, 4, 1]
-k  911  v  [9, 1, 1]
-k  931  v  [9, 3, 1]
-k  941  v  [9, 4, 1]
-k  951  v  [9, 5, 1]
-k  11  v  [1, 1]
-k  31  v  [3, 1]
-k  41  v  [4, 1]
-k  51  v  [5, 1]
-k  91  v  [9, 1]
-k  1  v  [1]
 weNeedThoseSeedsMorty  [1]
 sets:  [5, 4, 3, 1, 1]
 sets:  [9, 4, 3, 1, 1]
@@ -464,38 +368,918 @@ sets:  [1]
 sets:  [1]
 sets:  [1]
 sets:  [1]
-k  54311  v  [5, 4, 3, 1, 1]
-k  94311  v  [9, 4, 3, 1, 1]
-k  95311  v  [9, 5, 3, 1, 1]
-k  95411  v  [9, 5, 4, 1, 1]
-k  95431  v  [9, 5, 4, 3, 1]
-k  4311  v  [4, 3, 1, 1]
-k  5311  v  [5, 3, 1, 1]
-k  5411  v  [5, 4, 1, 1]
-k  5431  v  [5, 4, 3, 1]
-k  9311  v  [9, 3, 1, 1]
-k  9411  v  [9, 4, 1, 1]
-k  9431  v  [9, 4, 3, 1]
-k  9511  v  [9, 5, 1, 1]
-k  9531  v  [9, 5, 3, 1]
-k  9541  v  [9, 5, 4, 1]
-k  311  v  [3, 1, 1]
-k  411  v  [4, 1, 1]
-k  431  v  [4, 3, 1]
-k  511  v  [5, 1, 1]
-k  531  v  [5, 3, 1]
-k  541  v  [5, 4, 1]
-k  911  v  [9, 1, 1]
-k  931  v  [9, 3, 1]
-k  941  v  [9, 4, 1]
-k  951  v  [9, 5, 1]
-k  11  v  [1, 1]
-k  31  v  [3, 1]
-k  41  v  [4, 1]
-k  51  v  [5, 1]
-k  91  v  [9, 1]
-k  1  v  [1]
+testing: 54311
+testing: 54311
+testing: 54131
+testing: 54113
+testing: 54113
+testing: 54131
+testing: 53411
+testing: 53411
+testing: 53141
+testing: 53114
+testing: 53114
+testing: 53141
+testing: 51341
+testing: 51314
+testing: 51431
+testing: 51413
+testing: 51143
+testing: 51134
+testing: 51314
+testing: 51341
+testing: 51134
+testing: 51143
+testing: 51413
+testing: 51431
+testing: 45311
+testing: 45311
+testing: 45131
+testing: 45113
+testing: 45113
+testing: 45131
+testing: 43511
+testing: 43511
+testing: 43151
+testing: 43115
+testing: 43115
+testing: 43151
+testing: 41351
+testing: 41315
+testing: 41531
+testing: 41513
+testing: 41153
+testing: 41135
+testing: 41315
+testing: 41351
+testing: 41135
+testing: 41153
+testing: 41513
+testing: 41531
+testing: 34511
+testing: 34511
+testing: 34151
+testing: 34115
+testing: 34115
+testing: 34151
+testing: 35411
+testing: 35411
+testing: 35141
+testing: 35114
+testing: 35114
+testing: 35141
+testing: 31541
+testing: 31514
+testing: 31451
+testing: 31415
+testing: 31145
+testing: 31154
+testing: 31514
+testing: 31541
+testing: 31154
+testing: 31145
+testing: 31415
+testing: 31451
+testing: 14351
+testing: 14315
+testing: 14531
+testing: 14513
+testing: 14153
+testing: 14135
+testing: 13451
+testing: 13415
+testing: 13541
+testing: 13514
+testing: 13154
+testing: 13145
+testing: 15341
+testing: 15314
+testing: 15431
+testing: 15413
+testing: 15143
+testing: 15134
+testing: 11354
+testing: 11345
+testing: 11534
+testing: 11543
+testing: 11453
+testing: 11435
+testing: 14315
+testing: 14351
+testing: 14135
+testing: 14153
+testing: 14513
+testing: 14531
+testing: 13415
+testing: 13451
+testing: 13145
+testing: 13154
+testing: 13514
+testing: 13541
+testing: 11345
+testing: 11354
+testing: 11435
+testing: 11453
+testing: 11543
+testing: 11534
+testing: 15314
+testing: 15341
+testing: 15134
+testing: 15143
+testing: 15413
+testing: 15431
+testing: 94311
+testing: 94311
+testing: 94131
+testing: 94113
+testing: 94113
+testing: 94131
+testing: 93411
+testing: 93411
+testing: 93141
+testing: 93114
+testing: 93114
+testing: 93141
+testing: 91341
+testing: 91314
+testing: 91431
+testing: 91413
+testing: 91143
+testing: 91134
+testing: 91314
+testing: 91341
+testing: 91134
+testing: 91143
+testing: 91413
+testing: 91431
+testing: 49311
+testing: 49311
+testing: 49131
+testing: 49113
+testing: 49113
+testing: 49131
+testing: 43911
+testing: 43911
+testing: 43191
+testing: 43119
+testing: 43119
+testing: 43191
+testing: 41391
+testing: 41319
+testing: 41931
+testing: 41913
+testing: 41193
+testing: 41139
+testing: 41319
+testing: 41391
+testing: 41139
+testing: 41193
+testing: 41913
+testing: 41931
+testing: 34911
+testing: 34911
+testing: 34191
+testing: 34119
+testing: 34119
+testing: 34191
+testing: 39411
+testing: 39411
+testing: 39141
+testing: 39114
+testing: 39114
+testing: 39141
+testing: 31941
+testing: 31914
+testing: 31491
+testing: 31419
+testing: 31149
+testing: 31194
+testing: 31914
+testing: 31941
+testing: 31194
+testing: 31149
+testing: 31419
+testing: 31491
+testing: 14391
+testing: 14319
+testing: 14931
+testing: 14913
+testing: 14193
+testing: 14139
+testing: 13491
+testing: 13419
+testing: 13941
+testing: 13914
+testing: 13194
+testing: 13149
+testing: 19341
+testing: 19314
+testing: 19431
+testing: 19413
+testing: 19143
+testing: 19134
+testing: 11394
+testing: 11349
+testing: 11934
+testing: 11943
+testing: 11493
+testing: 11439
+testing: 14319
+testing: 14391
+testing: 14139
+testing: 14193
+testing: 14913
+testing: 14931
+testing: 13419
+testing: 13491
+testing: 13149
+testing: 13194
+testing: 13914
+testing: 13941
+testing: 11349
+testing: 11394
+testing: 11439
+testing: 11493
+testing: 11943
+testing: 11934
+testing: 19314
+testing: 19341
+testing: 19134
+testing: 19143
+testing: 19413
+testing: 19431
+testing: 95311
+testing: 95311
+testing: 95131
+testing: 95113
+testing: 95113
+testing: 95131
+testing: 93511
+testing: 93511
+testing: 93151
+testing: 93115
+testing: 93115
+testing: 93151
+testing: 91351
+testing: 91315
+testing: 91531
+testing: 91513
+testing: 91153
+testing: 91135
+testing: 91315
+testing: 91351
+testing: 91135
+testing: 91153
+testing: 91513
+testing: 91531
+testing: 59311
+testing: 59311
+testing: 59131
+testing: 59113
+testing: 59113
+testing: 59131
+testing: 53911
+testing: 53911
+testing: 53191
+testing: 53119
+testing: 53119
+testing: 53191
+testing: 51391
+testing: 51319
+testing: 51931
+testing: 51913
+testing: 51193
+testing: 51139
+testing: 51319
+testing: 51391
+testing: 51139
+testing: 51193
+testing: 51913
+testing: 51931
+testing: 35911
+testing: 35911
+testing: 35191
+testing: 35119
+testing: 35119
+testing: 35191
+testing: 39511
+testing: 39511
+testing: 39151
+testing: 39115
+testing: 39115
+testing: 39151
+testing: 31951
+testing: 31915
+testing: 31591
+testing: 31519
+testing: 31159
+testing: 31195
+testing: 31915
+testing: 31951
+testing: 31195
+testing: 31159
+testing: 31519
+testing: 31591
+testing: 15391
+testing: 15319
+testing: 15931
+testing: 15913
+testing: 15193
+testing: 15139
+testing: 13591
+testing: 13519
+testing: 13951
+testing: 13915
+testing: 13195
+testing: 13159
+testing: 19351
+testing: 19315
+testing: 19531
+testing: 19513
+testing: 19153
+testing: 19135
+testing: 11395
+testing: 11359
+testing: 11935
+testing: 11953
+testing: 11593
+testing: 11539
+testing: 15319
+testing: 15391
+testing: 15139
+testing: 15193
+testing: 15913
+testing: 15931
+testing: 13519
+testing: 13591
+testing: 13159
+testing: 13195
+testing: 13915
+testing: 13951
+testing: 11359
+testing: 11395
+testing: 11539
+testing: 11593
+testing: 11953
+testing: 11935
+testing: 19315
+testing: 19351
+testing: 19135
+testing: 19153
+testing: 19513
+testing: 19531
+testing: 95411
+testing: 95411
+testing: 95141
+testing: 95114
+testing: 95114
+testing: 95141
+testing: 94511
+testing: 94511
+testing: 94151
+testing: 94115
+testing: 94115
+testing: 94151
+testing: 91451
+testing: 91415
+testing: 91541
+testing: 91514
+testing: 91154
+testing: 91145
+testing: 91415
+testing: 91451
+testing: 91145
+testing: 91154
+testing: 91514
+testing: 91541
+testing: 59411
+testing: 59411
+testing: 59141
+testing: 59114
+testing: 59114
+testing: 59141
+testing: 54911
+testing: 54911
+testing: 54191
+testing: 54119
+testing: 54119
+testing: 54191
+testing: 51491
+testing: 51419
+testing: 51941
+testing: 51914
+testing: 51194
+testing: 51149
+testing: 51419
+testing: 51491
+testing: 51149
+testing: 51194
+testing: 51914
+testing: 51941
+testing: 45911
+testing: 45911
+testing: 45191
+testing: 45119
+testing: 45119
+testing: 45191
+testing: 49511
+testing: 49511
+testing: 49151
+testing: 49115
+testing: 49115
+testing: 49151
+testing: 41951
+testing: 41915
+testing: 41591
+testing: 41519
+testing: 41159
+testing: 41195
+testing: 41915
+testing: 41951
+testing: 41195
+testing: 41159
+testing: 41519
+testing: 41591
+testing: 15491
+testing: 15419
+testing: 15941
+testing: 15914
+testing: 15194
+testing: 15149
+testing: 14591
+testing: 14519
+testing: 14951
+testing: 14915
+testing: 14195
+testing: 14159
+testing: 19451
+testing: 19415
+testing: 19541
+testing: 19514
+testing: 19154
+testing: 19145
+testing: 11495
+testing: 11459
+testing: 11945
+testing: 11954
+testing: 11594
+testing: 11549
+testing: 15419
+testing: 15491
+testing: 15149
+testing: 15194
+testing: 15914
+testing: 15941
+testing: 14519
+testing: 14591
+testing: 14159
+testing: 14195
+testing: 14915
+testing: 14951
+testing: 11459
+testing: 11495
+testing: 11549
+testing: 11594
+testing: 11954
+testing: 11945
+testing: 19415
+testing: 19451
+testing: 19145
+testing: 19154
+testing: 19514
+testing: 19541
+testing: 95431
+testing: 95413
+testing: 95341
+testing: 95314
+testing: 95134
+testing: 95143
+testing: 94531
+testing: 94513
+testing: 94351
+testing: 94315
+testing: 94135
+testing: 94153
+testing: 93451
+testing: 93415
+testing: 93541
+testing: 93514
+testing: 93154
+testing: 93145
+testing: 91435
+testing: 91453
+testing: 91345
+testing: 91354
+testing: 91534
+testing: 91543
+testing: 59431
+testing: 59413
+testing: 59341
+testing: 59314
+testing: 59134
+testing: 59143
+testing: 54931
+testing: 54913
+testing: 54391
+testing: 54319
+testing: 54139
+testing: 54193
+testing: 53491
+testing: 53419
+testing: 53941
+testing: 53914
+testing: 53194
+testing: 53149
+testing: 51439
+testing: 51493
+testing: 51349
+testing: 51394
+testing: 51934
+testing: 51943
+testing: 45931
+testing: 45913
+testing: 45391
+testing: 45319
+testing: 45139
+testing: 45193
+testing: 49531
+testing: 49513
+testing: 49351
+testing: 49315
+testing: 49135
+testing: 49153
+testing: 43951
+testing: 43915
+testing: 43591
+testing: 43519
+testing: 43159
+testing: 43195
+testing: 41935
+testing: 41953
+testing: 41395
+testing: 41359
+testing: 41539
+testing: 41593
+testing: 35491
+testing: 35419
+testing: 35941
+testing: 35914
+testing: 35194
+testing: 35149
+testing: 34591
+testing: 34519
+testing: 34951
+testing: 34915
+testing: 34195
+testing: 34159
+testing: 39451
+testing: 39415
+testing: 39541
+testing: 39514
+testing: 39154
+testing: 39145
+testing: 31495
+testing: 31459
+testing: 31945
+testing: 31954
+testing: 31594
+testing: 31549
+testing: 15439
+testing: 15493
+testing: 15349
+testing: 15394
+testing: 15934
+testing: 15943
+testing: 14539
+testing: 14593
+testing: 14359
+testing: 14395
+testing: 14935
+testing: 14953
+testing: 13459
+testing: 13495
+testing: 13549
+testing: 13594
+testing: 13954
+testing: 13945
+testing: 19435
+testing: 19453
+testing: 19345
+testing: 19354
+testing: 19534
+testing: 19543
+testing: 4311
+testing: 4311
+testing: 4131
+testing: 4113
+testing: 4113
+testing: 4131
+testing: 3411
+testing: 3411
+testing: 3141
+testing: 3114
+testing: 3114
+testing: 3141
+testing: 1341
+testing: 1314
+testing: 1431
+testing: 1413
+testing: 1143
+testing: 1134
+testing: 1314
+testing: 1341
+testing: 1134
+testing: 1143
+testing: 1413
+testing: 1431
+testing: 5311
+testing: 5311
+testing: 5131
+testing: 5113
+testing: 5113
+testing: 5131
+testing: 3511
+testing: 3511
+testing: 3151
+testing: 3115
+testing: 3115
+testing: 3151
+testing: 1351
+testing: 1315
+testing: 1531
+testing: 1513
+testing: 1153
+testing: 1135
+testing: 1315
+testing: 1351
+testing: 1135
+testing: 1153
+testing: 1513
+testing: 1531
+testing: 5411
+testing: 5411
+testing: 5141
+testing: 5114
+testing: 5114
+testing: 5141
+testing: 4511
+testing: 4511
+testing: 4151
+testing: 4115
+testing: 4115
+testing: 4151
+testing: 1451
+testing: 1415
+testing: 1541
+testing: 1514
+testing: 1154
+testing: 1145
+testing: 1415
+testing: 1451
+testing: 1145
+testing: 1154
+testing: 1514
+testing: 1541
+testing: 5431
+testing: 5413
+testing: 5341
+testing: 5314
+testing: 5134
+testing: 5143
+testing: 4531
+testing: 4513
+testing: 4351
+testing: 4315
+testing: 4135
+testing: 4153
+testing: 3451
+testing: 3415
+testing: 3541
+testing: 3514
+testing: 3154
+testing: 3145
+testing: 1435
+testing: 1453
+testing: 1345
+testing: 1354
+testing: 1534
+testing: 1543
+testing: 9311
+testing: 9311
+testing: 9131
+testing: 9113
+testing: 9113
+testing: 9131
+testing: 3911
+testing: 3911
+testing: 3191
+testing: 3119
+testing: 3119
+testing: 3191
+testing: 1391
+testing: 1319
+testing: 1931
+testing: 1913
+testing: 1193
+testing: 1139
+testing: 1319
+testing: 1391
+testing: 1139
+testing: 1193
+testing: 1913
+testing: 1931
+testing: 9411
+testing: 9411
+testing: 9141
+testing: 9114
+testing: 9114
+testing: 9141
+testing: 4911
+testing: 4911
+testing: 4191
+testing: 4119
+testing: 4119
+testing: 4191
+testing: 1491
+testing: 1419
+testing: 1941
+testing: 1914
+testing: 1194
+testing: 1149
+testing: 1419
+testing: 1491
+testing: 1149
+testing: 1194
+testing: 1914
+testing: 1941
+testing: 9431
+testing: 9413
+testing: 9341
+testing: 9314
+testing: 9134
+testing: 9143
+testing: 4931
+testing: 4913
+testing: 4391
+testing: 4319
+testing: 4139
+testing: 4193
+testing: 3491
+testing: 3419
+testing: 3941
+testing: 3914
+testing: 3194
+testing: 3149
+testing: 1439
+testing: 1493
+testing: 1349
+testing: 1394
+testing: 1934
+testing: 1943
+testing: 9511
+testing: 9511
+testing: 9151
+testing: 9115
+testing: 9115
+testing: 9151
+testing: 5911
+testing: 5911
+testing: 5191
+testing: 5119
+testing: 5119
+testing: 5191
+testing: 1591
+testing: 1519
+testing: 1951
+testing: 1915
+testing: 1195
+testing: 1159
+testing: 1519
+testing: 1591
+testing: 1159
+testing: 1195
+testing: 1915
+testing: 1951
+testing: 9531
+testing: 9513
+testing: 9351
+testing: 9315
+testing: 9135
+testing: 9153
+testing: 5931
+testing: 5913
+testing: 5391
+testing: 5319
+testing: 5139
+testing: 5193
+testing: 3591
+testing: 3519
+testing: 3951
+testing: 3915
+testing: 3195
+testing: 3159
+testing: 1539
+testing: 1593
+testing: 1359
+testing: 1395
+testing: 1935
+testing: 1953
+testing: 9541
+testing: 9514
+testing: 9451
+testing: 9415
+testing: 9145
+testing: 9154
+testing: 5941
+testing: 5914
+testing: 5491
+testing: 5419
+testing: 5149
+testing: 5194
+testing: 4591
+testing: 4519
+testing: 4951
+testing: 4915
+testing: 4195
+testing: 4159
+testing: 1549
+testing: 1594
+testing: 1459
+testing: 1495
+testing: 1945
+testing: 1954
+testing: 311
+testing: 311
+testing: 131
+testing: 113
+testing: 113
+testing: 131
+testing: 411
+testing: 411
+testing: 141
+testing: 114
+testing: 114
+testing: 141
+testing: 431
+testing: 413
+testing: 341
+testing: 314
+testing: 134
+testing: 143
+testing: 511
+testing: 511
+testing: 151
+testing: 115
+testing: 115
+testing: 151
+testing: 531
+testing: 513
+testing: 351
+testing: 315
+testing: 135
+testing: 153
+testing: 541
+testing: 514
+testing: 451
+testing: 415
+testing: 145
+testing: 154
+testing: 911
+testing: 911
+testing: 191
+testing: 119
+testing: 119
+testing: 191
+testing: 931
+testing: 913
+testing: 391
+testing: 319
+testing: 139
+testing: 193
+testing: 941
+testing: 914
+testing: 491
+testing: 419
+testing: 149
+testing: 194
+testing: 951
+testing: 915
+testing: 591
+testing: 519
+testing: 159
+testing: 195
+testing: 11
+testing: 11
+testing: 31
+testing: 13
+testing: 41
+testing: 14
+testing: 51
+testing: 15
+testing: 91
+testing: 19
 X  1
+testing: 1
 codes:  94311
 codes:  94311
 codes:  94131
@@ -708,12 +1492,14 @@ codes:  159
 codes:  195
 codes:  51
 codes:  15
+codes:  9
+codes:  3
 ================
 RESULT:  94311
 ================
 .
 ----------------------------------------------------------------------
-Ran 1 test in 0.003s
+Ran 1 test in 0.005s
 
 OK
 '''
