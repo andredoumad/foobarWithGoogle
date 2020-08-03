@@ -233,9 +233,6 @@ class Solution(object):
         for i in range(0, len(self.codes)):
             print('codes: ', self.codes[i])
         return self.codes[0]
-            # if that can't be done, remove the smallest number from the list, then try again
-                # if this can't be done - return 0
-
 
 
 class UnitTest(unittest.TestCase):
