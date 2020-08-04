@@ -55,238 +55,137 @@ so basically find the largest number you can that is divisible by 3 given a list
 
 '''
 
-import unittest
-
-class MaxHeap(object):
-
-    def __init__(self):
-        self.heap = []
-
-    # get parent left right
-    def getParent(self,i):
-        return int((i-1)/2)
-    def getLeft(self,i):
-        return 2*i+1
-    def getRight(self,i):
-        return 2*i+2
-
-    # has parent left right
-    def hasParent(self,i):
-        return self.getParent(i)>= 0
-    def hasLeft(self,i):
-        return self.getLeft(i) < len(self.heap)
-    def hasRight(self,i):
-        return self.getRight(i) < len(self.heap)
-
-    # swap
-    def swap(self, a,b):
-        self.heap[a], self.heap[b] = self.heap[b], self.heap[a]
-
-    # insert
-    def insert(self, key):
-        if len(self.heap) == 0:
-            self.heap.append(key)
-            return
-        self.heap.append(key)
-        self.heapifyUp(len(self.heap)-1)
-
-    # pop
-    def pop(self):
-        if len(self.heap)==0:
-            return None
-        self.swap(0, len(self.heap)-1)
-        if self.heap[0] > self.heap[len(self.heap)-1]:
-            self.swap(0, len(self.heap)-1)
-        val = self.heap.pop()
-        self.heapifyDown(0)
-        return val
-
-    # heapify up
-    def heapifyUp(self, i):
-        while self.hasParent(i) and self.heap[self.getParent(i)] < self.heap[i]:
-            self.swap(i, self.getParent(i))
-            i = self.getParent(i)
-
-    # heapify down
-    def heapifyDown(self,i):
-        while self.hasLeft(i):
-            max_child_index = self.maxChild(i)
-            if max_child_index == -1:
-                break
-            if self.heap[max_child_index] > self.heap[i]:
-                self.swap(i, max_child_index)
-                i = max_child_index
-            else:
-                break
-
-    # max child
-    def maxChild(self, i):
-        if self.hasLeft(i):
-            left_index = self.getLeft(i)
-            if self.hasRight(i):
-                right_index = self.getRight(i)
-                if self.heap[left_index] >= self.heap[right_index]:
-                    return left_index
-                else:
-                    return right_index
-            else:
-                return -1
-        else:
-            return -1
-
-
-import time
-
 class Solution(object):
     def __init__(self):
-        self.maxHeap = MaxHeap()
+        self.plates = {}
         self.codes = []
-        self.sets = []
-        self.setDict = {}
 
     def solve(self, X):
-        print('-------------')
-        print('plates: ', X)
-        
-        # you're re-arranging the list from greatest to least (requires max heap)
-        for i in range(0, len(X)):
-            # print(X[i])
-            self.maxHeap.insert(X[i])
-        for i in range(0, len(X)):
-            X[i] = self.maxHeap.pop()
-        print('sorted plates: ', X)
-        result = self.recEncoder(X, len(X)-1)
-        print('================')
-        print('RESULT: ', result)
-        print('================')
-        return result
+        # set the initial arrangement of plates
+        self.plates[0] = X
+
+        # we need to create all of the possible arrangements of plates
+        # this includes cases where we remove some plates from the arrangement.
+        lastSetLength = self.arrangePlates(X)
+        while lastSetLength != None:
+            plateArrangements = []
+            for k,v in self.plates.items():
+                print('k ', k, ' v ', v)
+                if len(v) == lastSetLength:
+                    plateArrangements.append(v)
+            for i in range(0,len(plateArrangements)):
+                print('plateArrangements ', plateArrangements[i])
+                lastSetLength = self.arrangePlates(plateArrangements[i])
+
+        # run permutations given all plate arrangements, and record all codes.
+        for k,v in self.plates.items():
+            print('k ', k, ' v ', v)
+            self.recPerm(v, 0)
+
+        # print codes
+        for i in range(0, len(self.codes)):
+            print('codes: ', self.codes[i])
+
+        # pick largest code
+        largestCode = 0
+        for i in range(0, len(self.codes)):
+            if int(self.codes[i]) > int(largestCode):
+                largestCode = int(self.codes[i])
+
+        # return largest code
+        return int(largestCode)
 
     def lisToInt(self, X):
         code = ''
         if len(X) ==1:
-            print('X ', X[0])
-            return X[0]
+            return int(X[0])
         for i in range(0,len(X)):
             code += str(X[i])
         return int(code)
     
     def recPerm(self, a, b):
         if b == len(a):
-            # print('a ', a)
             code = self.lisToInt(a)
             print('testing: ' + str(code))
             if code % 3 == 0:
-                print('FOUND CODE !', code, ' yay.')
                 self.codes.append(code)
-                # return code
-                # exit()
         else:
             for i in range(b, len(a)):
                 a[b], a[i] = a[i] ,a[b]
                 self.recPerm(a, b+1)
                 a[b], a[i] = a[i], a[b]
 
-
-    def seedSets(self, X):
-        
+    def arrangePlates(self, X):
         if len(X) > 1:
             lastSetLength = 0
-            for a in range(0, len(X)-1):
+            for a in range(0, len(X)):
                 newSet = []
                 for b in range(0, len(X)):
                     if b != a:
                         newSet.append(X[b])
-                self.sets.append(newSet)
-                self.setDict[self.lisToInt(newSet)] = newSet
+                self.plates[self.lisToInt(newSet)] = newSet
                 lastSetLength = len(newSet)
             return lastSetLength
         else:
             return None
 
+def solution(l):
+    solver = Solution()
+    return solver.solve(l)
 
-    def recEncoder(self, X, index):
+# print(solution([3, 1, 4, 1]))
+print(solution([3,1,4,1,5,9]))
 
-        # we need to create a dictionary of permutations where X is 
-        # fully shuffled and including all of the ways to shuffle X-1
-        lastSetLength = self.seedSets(X)
-        while lastSetLength != None:
-            weNeedThoseSeedsMorty = []
-            for k,v in self.setDict.items():
-                # print('k ', k, ' v ', v)
-                if len(v) == lastSetLength:
-                    weNeedThoseSeedsMorty.append(v)
-            for i in range(0,len(weNeedThoseSeedsMorty)):
-                print('weNeedThoseSeedsMorty ', weNeedThoseSeedsMorty[i])
-                lastSetLength = self.seedSets(weNeedThoseSeedsMorty[i])
+# class UnitTest(unittest.TestCase):
+#     def test_a(self):
+        
+#         # print(solution([3,1,4,1])) # out: 4311
+#         print(solution([3, 1, 4, 1, 5, 9])) # out: 94311
+#         # solution.perm([1,2,3])
 
-        for i in range(0, len(self.sets)):
-            print('sets: ', self.sets[i])
-
-        for k,v in self.setDict.items():
-            # print('k ', k, ' v ', v)
-            self.recPerm(v, 0)
-
-        # check each element of X to see if there are any primes there.
-        for i in range(0, len(X)):
-            if X[i] % 3 == 0:
-                # print('FOUND CODE !')
-                self.codes.append(X[i])
-
-        for i in range(0, len(self.codes)):
-            print('codes: ', self.codes[i])
-        return self.codes[0]
-
-
-class UnitTest(unittest.TestCase):
-    def test_a(self):
-        solution = Solution()
-        # solution.solve([3,1,4,1]) # out: 4311
-        solution.solve([3, 1, 4, 1, 5, 9]) # out: 94311
-        # solution.perm([1,2,3])
-
-if __name__=='__main__':
-    unittest.main()
+# if __name__=='__main__':
+#     unittest.main()
 
 '''
 -------------
 plates:  [3, 1, 4, 1, 5, 9]
 sorted plates:  [9, 5, 4, 3, 1, 1]
-weNeedThoseSeedsMorty  [5, 4, 3, 1, 1]
-weNeedThoseSeedsMorty  [9, 4, 3, 1, 1]
-weNeedThoseSeedsMorty  [9, 5, 3, 1, 1]
-weNeedThoseSeedsMorty  [9, 5, 4, 1, 1]
-weNeedThoseSeedsMorty  [9, 5, 4, 3, 1]
-weNeedThoseSeedsMorty  [4, 3, 1, 1]
-weNeedThoseSeedsMorty  [5, 3, 1, 1]
-weNeedThoseSeedsMorty  [5, 4, 1, 1]
-weNeedThoseSeedsMorty  [5, 4, 3, 1]
-weNeedThoseSeedsMorty  [9, 3, 1, 1]
-weNeedThoseSeedsMorty  [9, 4, 1, 1]
-weNeedThoseSeedsMorty  [9, 4, 3, 1]
-weNeedThoseSeedsMorty  [9, 5, 1, 1]
-weNeedThoseSeedsMorty  [9, 5, 3, 1]
-weNeedThoseSeedsMorty  [9, 5, 4, 1]
-weNeedThoseSeedsMorty  [3, 1, 1]
-weNeedThoseSeedsMorty  [4, 1, 1]
-weNeedThoseSeedsMorty  [4, 3, 1]
-weNeedThoseSeedsMorty  [5, 1, 1]
-weNeedThoseSeedsMorty  [5, 3, 1]
-weNeedThoseSeedsMorty  [5, 4, 1]
-weNeedThoseSeedsMorty  [9, 1, 1]
-weNeedThoseSeedsMorty  [9, 3, 1]
-weNeedThoseSeedsMorty  [9, 4, 1]
-weNeedThoseSeedsMorty  [9, 5, 1]
-weNeedThoseSeedsMorty  [1, 1]
+plateArrangements  [5, 4, 3, 1, 1]
+plateArrangements  [9, 4, 3, 1, 1]
+plateArrangements  [9, 5, 3, 1, 1]
+plateArrangements  [9, 5, 4, 1, 1]
+plateArrangements  [9, 5, 4, 3, 1]
+plateArrangements  [4, 3, 1, 1]
+plateArrangements  [5, 3, 1, 1]
+plateArrangements  [5, 4, 1, 1]
+plateArrangements  [5, 4, 3, 1]
+plateArrangements  [9, 3, 1, 1]
+plateArrangements  [9, 4, 1, 1]
+plateArrangements  [9, 4, 3, 1]
+plateArrangements  [9, 5, 1, 1]
+plateArrangements  [9, 5, 3, 1]
+plateArrangements  [9, 5, 4, 1]
+plateArrangements  [3, 1, 1]
+plateArrangements  [4, 1, 1]
+plateArrangements  [4, 3, 1]
+plateArrangements  [5, 1, 1]
+plateArrangements  [5, 3, 1]
+plateArrangements  [5, 4, 1]
+plateArrangements  [9, 1, 1]
+plateArrangements  [9, 3, 1]
+plateArrangements  [9, 4, 1]
+plateArrangements  [9, 5, 1]
+plateArrangements  [1, 1]
 X  1
-weNeedThoseSeedsMorty  [3, 1]
+plateArrangements  [3, 1]
 X  1
-weNeedThoseSeedsMorty  [4, 1]
+plateArrangements  [4, 1]
 X  1
-weNeedThoseSeedsMorty  [5, 1]
+plateArrangements  [5, 1]
 X  1
-weNeedThoseSeedsMorty  [9, 1]
+plateArrangements  [9, 1]
 X  1
-weNeedThoseSeedsMorty  [1]
+plateArrangements  [1]
 sets:  [5, 4, 3, 1, 1]
 sets:  [9, 4, 3, 1, 1]
 sets:  [9, 5, 3, 1, 1]
