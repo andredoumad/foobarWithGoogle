@@ -85,7 +85,7 @@ class Solution(object):
         for i in range(0,len(X)):
             code += str(X[i])
         return int(code)
-    
+
     def recPerm(self, a, b):
         if b == len(a):
             code = self.lisToInt(a)
